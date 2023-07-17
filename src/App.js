@@ -1,12 +1,12 @@
 import "./App.css";
+import RouteConfigs from "./components/Configs/RouteConfigs";
 import Nav from "./components/Nav/Nav";
-import Pokedex from "./components/Pokedex/Pokedex";
 
 function App() {
   return (
     <>
       <Nav />
-      <Pokedex />
+      <RouteConfigs />
     </>
   );
 }
