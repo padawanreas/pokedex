@@ -30,7 +30,7 @@ const Pokedex = () => {
     <div className="container pl-32 pt-20 flex flex-wrap">
       {pokemons.map((pokemon, i) => (
         <div key={pokemon.id}>
-          <Link to={`${pokemon.name}`}>
+          <Link to={`${pokemon.id}`}>
             <div
               key={i}
               className="card py-2 px-2 rounded-lg ml-4 mb-4 w-52 "
