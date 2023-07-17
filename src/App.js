@@ -1,11 +1,8 @@
 import "./App.css";
+import Nav from "./components/Nav/Nav";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>POKEDEX</h1>
-    </div>
-  );
+  return <Nav />;
 }
 
 export default App;
