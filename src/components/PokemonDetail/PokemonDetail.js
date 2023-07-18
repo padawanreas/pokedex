@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProgressBar from "@ramonak/react-progress-bar";
 import PokemonEvolutions from "../Evolutions/PokemonEvolutions";
-import Evolution from "../Evolutions/Evolutions";
 
 const PokemonDetail = () => {
   const { id } = useParams();
