@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { COLOR } from "./TypeColors";
 import { Link } from "react-router-dom";
+import "./Style.css";
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -30,10 +31,10 @@ const Pokedex = () => {
     <div className="container pl-32 pt-20 flex flex-wrap">
       {pokemons.map((pokemon, i) => (
         <div key={pokemon.id}>
-          <Link to={`${pokemon.id}`}>
+          <Link to={`${pokemon.name}/${pokemon.id}`}>
             <div
               key={i}
-              className="card py-2 px-2 rounded-lg ml-4 mb-4 w-52 "
+              className="card  py-2 px-2 rounded-lg ml-4 mb-4 w-52 shadow-lg shadow-gray-900 "
               style={{
                 background: COLOR.LINEAR_GRAD(pokemon.types[0].type.name),
               }}
