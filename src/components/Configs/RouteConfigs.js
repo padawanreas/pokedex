@@ -7,7 +7,7 @@ function RouteConfigs() {
   return (
     <Routes>
       <Route path="/" element={<Pokedex />} />
-      <Route path=":id" element={<PokemonDetail />} />
+      <Route path=":name/:id" element={<PokemonDetail />} />
     </Routes>
   );
 }
