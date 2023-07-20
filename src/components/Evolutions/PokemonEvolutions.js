@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-const PokemonEvolutions = ({ match }) => {
+const PokemonEvolutions = () => {
   const [pokemon, setPokemon] = useState(null);
   const [evolutionChain, setEvolutionChain] = useState([]);
   const { id } = useParams();
@@ -50,17 +50,18 @@ const PokemonEvolutions = ({ match }) => {
   if (!pokemon) {
     return <div>Loading...</div>;
   }
+  console.log(evolutionChain);
 
   return (
-    <div className="flex flex-wrap w-full">
+    <div className="flex flex-wrap w-full pl-12 mt-6">
       {evolutionChain.map((evolution) => (
         <div key={evolution.name}>
-          <h3>{evolution.name}</h3>
           <img
             src={evolution && evolution.image}
             alt={evolution.name}
-            className="w-1/4"
+            className="w-48 ml-5"
           />
+          <h3 className="ml-6 text-center font-semibold">{evolution.name}</h3>
         </div>
       ))}
     </div>
