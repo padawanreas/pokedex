@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 const PokemonEvolutions = () => {
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState([]);
   const [evolutionChain, setEvolutionChain] = useState([]);
   const { id } = useParams();
 
