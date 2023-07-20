@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProgressBar from "@ramonak/react-progress-bar";
+import { COLOR } from "../Pokedex/TypeColors";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { IoIosStats } from "react-icons/io";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+import Stats from "./Stats";
 import PokemonEvolutions from "../Evolutions/PokemonEvolutions";
+import About from "./About";
 
 const PokemonDetail = () => {
-  const { id } = useParams();
   const [pokemon, setPokemon] = useState([]);
-  const [evolutionChain, setEvolutionChain] = useState([]);
-
+  const [activeComponent, setActiveComponent] = useState("About");
+  const { id } = useParams();
   useEffect(() => {
     async function getPokemon() {
       let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -20,45 +24,80 @@ const PokemonDetail = () => {
   }, [id]);
   console.log(pokemon);
 
-  const listStat =
-    pokemon.stats &&
-    pokemon.stats.map((stat, index) => (
-      <div className="stat" key={stat.id}>
-        <p key={index}>{stat.stat.name} </p>
+  /*
+  function capitalizeFirstLetter(string) {
+    return string && string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
-        <ProgressBar
-          key={stat.id}
-          completed={stat.base_stat}
-          bgColor={stat.base_stat > 50 ? "green" : "red"}
-          animateOnRender={true}
-        />
-      </div>
+  const displayTexts =
+    pokemon.abilities &&
+    pokemon.abilities.map((ability, index) => (
+      <li
+        key={index}
+        className="bg-slate-300	text-white mr-1 rounded-lg py-0 px-2 font-bold mt-2"
+      >
+        {ability.ability.name}
+      </li>
     ));
-
+*/
   return (
-    <div className="detail px-10 pt-6 ">
-      <div className="title flex bg-green-400">
-        <h1>{pokemon.name}</h1>
-        <p className="ml-3">#{pokemon.id}</p>
-      </div>
-      <div className="content flex justify-between">
-        <p>height: {pokemon.height} cm</p>
-        <div className="abilities">
-          <h2>Abilities:</h2>
-          <ul>
-            {pokemon.abilities &&
-              pokemon.abilities.map((ability, index) => (
-                <li key={index}>{ability.ability.name}</li>
-              ))}
-          </ul>
+    <div
+      className="profil w-screen min-h-screen relative pb-10"
+      style={{
+        background: COLOR.LINEAR_GRAD(
+          pokemon.types && pokemon.types[0].type.name
+        ),
+      }}
+    >
+      <div>
+        <div className="image relative w-auto h-60 sm:h-80 pokemon-picture pl-96 ">
+          <img
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+            alt={pokemon.name}
+            className="w-63 ml-20 py-2 "
+          />
         </div>
-
-        <div className="stats w-2/6">
-          <h1>stats</h1>
-          <div className="stat-container">{listStat}</div>
+        <div className="profil-content px-8 sm:px-1 py-6 bg-white rounded-3xl min-h-[60%] max-w-3xl shadow-xl m-auto ">
+          <nav className="mt-8  flex justify-center">
+            <ul className=" font-semibold text-black ">
+              <div className=" mt-40 flex ">
+                <li
+                  onClick={() => setActiveComponent("About")}
+                  className="flex items-center sm:pb-2 sm:pr-8 hover:text-red-600 text-xl"
+                >
+                  <AiOutlineInfoCircle />
+                  Abouts
+                </li>
+                <li
+                  onClick={() => setActiveComponent("Stats")}
+                  className="flex items-center sm:pb-2 sm:pr-8 hover:text-red-600 text-xl"
+                >
+                  <IoIosStats />
+                  Stats
+                </li>
+                <li
+                  onClick={() => setActiveComponent("Evolutions")}
+                  className="flex items-center sm:pb-2 sm:pr-8 hover:text-red-600 text-xl"
+                >
+                  <MdKeyboardDoubleArrowUp />
+                  Evolutions
+                </li>
+              </div>
+            </ul>
+          </nav>
+          <div>
+            {activeComponent === "About" && (
+              <About
+                height={pokemon.height}
+                weight={pokemon.weight}
+                abilities={pokemon.abilities}
+              />
+            )}
+            {activeComponent === "Stats" && <Stats stats={pokemon.stats} />}
+            {activeComponent === "Evolutions" && <PokemonEvolutions />}
+          </div>
         </div>
       </div>
-      <PokemonEvolutions />
     </div>
   );
 };
