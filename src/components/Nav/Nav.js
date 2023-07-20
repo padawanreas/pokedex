@@ -10,14 +10,6 @@ function Nav() {
         <Link to="/">
           <img src={pokemon} alt="pokemon" className="logo w-40" />
         </Link>
-        <div className="search-container">
-          <input
-            type="text"
-            name="search"
-            placeholder="Rechercher un pokemon..."
-            className="search-input rounded px-2 shadow-inner shadow-gray-500"
-          />
-        </div>
       </div>
     </header>
   );
