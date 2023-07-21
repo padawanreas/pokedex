@@ -12,4 +12,4 @@ Icons: npm i react-icons --save
 
 ## CSS
 
-Tailwind: [https://tailwindcss.com/]
+Tailwind: https://tailwindcss.com/
