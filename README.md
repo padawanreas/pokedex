@@ -1,6 +1,6 @@
 # React Pokedex
 
-Projet Pokedex utilise [Poke Api][https://pokeapi.co/]
+Projet Pokedex utilise l'api Poke https://pokeapi.co/
 
 ## Library NPM
 
